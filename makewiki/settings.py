@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'wiki',
-    'accounts'
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -136,6 +136,10 @@ WIKI_PAGE_TITLE_MAX_LENGTH = 600
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 DEFAULT_LOGOUT_URL = '/'
+
+# config/settings.py
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
 # Required for Heroku
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
