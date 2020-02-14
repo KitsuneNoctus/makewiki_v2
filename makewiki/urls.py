@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from accounts.views import SignUpView
 
 """
 CHALLENGES:
@@ -26,6 +27,7 @@ urlpatterns = [
     # Admin Site
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', SignUpView.as_view(), name="signup"),
 
     # Wiki App
     path('', include('wiki.urls')),
