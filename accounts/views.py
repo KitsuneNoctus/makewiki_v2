@@ -9,6 +9,6 @@ class SignUpView(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
-class ForgotPassword():
-    form_class = UserCreationForm
-    pass
+# class ForgotPassword():
+#     form_class = UserCreationForm
+#     pass
