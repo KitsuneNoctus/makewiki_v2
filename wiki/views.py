@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
+from django.utils.text import slugify
+
 from django.http import HttpResponseRedirect
 
 from wiki.models import Page
@@ -44,13 +46,20 @@ class PageDetailView(DetailView):
 
 # Stretch Challenge
 class PageCreateView(CreateView):
+    # def __init__(self, user, *args, **kwargs):
+    #     self.user = user
+    #     super(RSVPForm, self).__init__(*args, **kwargs)
+
   def get(self, request, *args, **kwargs):
       context = {'form': PageForm()}
+      # context.author = request.user
       return render(request, 'new.html', context)
 
   def post(self, request, *args, **kwargs):
       form = PageForm(request.POST)
       if form.is_valid():
-          page = form.save()
-          return HttpResponseRedirect(reverse_lazy('wiki:detail', args=[page.id]))
+          page = form.save(commit = False)
+          page.author = request.user
+          page.save()
+          return HttpResponseRedirect(reverse_lazy('wiki-details-page', args=[slugify(page.title)]))
       return render(request, 'new.html', {'form': form})
