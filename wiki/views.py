@@ -61,5 +61,6 @@ class PageCreateView(CreateView):
           page = form.save(commit = False)
           page.author = request.user
           page.save()
+          # Using slugify here as the url takes in a string and not an Int id
           return HttpResponseRedirect(reverse_lazy('wiki-details-page', args=[slugify(page.title)]))
       return render(request, 'new.html', {'form': form})
