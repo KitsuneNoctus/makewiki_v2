@@ -46,9 +46,6 @@ class PageDetailView(DetailView):
 
 # Stretch Challenge
 class PageCreateView(CreateView):
-    # def __init__(self, user, *args, **kwargs):
-    #     self.user = user
-    #     super(RSVPForm, self).__init__(*args, **kwargs)
 
   def get(self, request, *args, **kwargs):
       context = {'form': PageForm()}
