@@ -58,7 +58,7 @@ class PageListViewTests(TestCase):
 
         # # Issue a GET request to the detail page
         # # When we make a request, we get a response back.
-        # response = self.client.get('/my-test-page')
+        # response = self.client.get('/my-test-page', follow= True)
 
         # # Check that the response is 200 OK.
         # self.assertEqual(response.status_code, 200)
@@ -84,5 +84,7 @@ class PageListViewTests(TestCase):
         page = Page(title="My Test Page", content="test", author=user)
         page.save()
 
-        response = self.client.get("/my-test-page")
+        # Make a response call
+        response = self.client.get("/my-test-page", follow= True)
+        # Assert response code is a 200
         self.assertEqual(response.status_code, 200)
