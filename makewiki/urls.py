@@ -31,4 +31,6 @@ urlpatterns = [
 
     # Wiki App
     path('', include('wiki.urls')),
+    #API App
+    path('api/', include('api.urls')),
 ]
