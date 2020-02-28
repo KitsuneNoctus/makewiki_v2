@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from accounts.views import SignUpView
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 """
 CHALLENGES:
     1. Uncomment the path() for the wiki app below. Use it to direct any request (except `/admin` URLs)
@@ -33,4 +36,4 @@ urlpatterns = [
     path('', include('wiki.urls')),
     #API App
     path('api/', include('api.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
